@@ -1,0 +1,90 @@
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+<!--<head>-->
+<!--    <title>Выбрать дату и параметры</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<form action="/" method="post" th:action="@{eeer}" th:object="${Datas}">-->
+<!--    <label for="selectedDate">Выберите дату:</label>-->
+<!--    <input type="date" id="selectedDate" name="selectedDate" th:field="*{date}">-->
+
+<!--    <br>-->
+
+<!--    <label for="waterLevel">Уровень воды:</label>-->
+<!--    <input type="checkbox" id="waterLevel" name="waterLevel" th:field="*{waterLevel}" value="true">-->
+
+<!--    <label for="airTemperature">Температура воздуха:</label>-->
+<!--    <input type="checkbox" id="airTemperature" name="airTemperature" th:field="*{airTemperature}" value="true">-->
+
+<!--    <br>-->
+
+<!--    <input type="submit" value="Отправить">-->
+<!--</form>-->
+<!--</body>-->
+<!--</html>-->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Прогноз уровня воды в реке</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .container {
+            margin-top: 50px;
+        }
+        #calendar {
+            margin-bottom: 20px;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        #river-image {
+            width: 100%;
+        }
+        #post-code {
+            width: 150px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Прогноз уровня воды в реке</h2>
+<!--    <p class="alert alert-danger" th:if="${#fields.hasErrors('Kod')}" th:errors="*{Kod}"></p>-->
+    <form action="/" method="post" th:action="@{eeer}" th:object="${Datas}">
+        <label for="selectedDate">Выберите дату:</label>
+        <input type="date" id="selectedDate" name="selectedDate" th:field="*{date}">
+        <br>
+        <label for="waterLevel">Уровень воды:</label>
+        <input type="checkbox" id="waterLevel" name="waterLevel" th:field="*{waterLevel}" value="">
+        <br>
+        <label for="airTemperature">Температура воздуха:</label>
+        <input type="checkbox" id="airTemperature" name="airTemperature" th:field="*{airTemperature}" value="">
+        <br>
+        <label for="Kod">Код поста:</label>
+        <input type="text" id="Kod" name="Kod" th:field="*{Kod}">
+        <br>
+        <label for="pressure">Атмосферное давление:</label>
+        <input type="checkbox" id="pressure" name="pressure" th:field="*{pressure}" value="">
+        <br>
+        <label for="windspeed">Скорость ветра:</label>
+        <input type="checkbox" id="windspeed" name="windspeed" th:field="*{windspeed}" value="">
+        <br>
+        <label for="snow">Толщина снежного покрова:</label>
+        <input type="checkbox" id="snow" name="snow" th:field="*{snow}" value="">
+        <br>
+        <label for="precipation">Количество осадков:</label>
+        <input type="checkbox" id="precipation" name="precipation" th:field="*{precipation}" value="">
+        <br>
+        <!--        <div class="form-group">-->
+        <!--            <label for="kod">Выберите код поста:</label> <select th:field="*{list}" class="form-control" id="post-code">-->
+        <!--            <option th:each="el : ${list}" th:value="${el}" th:text="${el}">Пост 1</option> </select>-->
+        <!--        </div>-->
+        <button type="submit" class="btn btn-primary">Предсказать уровень воды</button>
+    </form>
+    <div id="river-image">
+        <img src="river_image.jpg" alt="Река" id="river">
+    </div>
+</div>
+</body>
+</html>
