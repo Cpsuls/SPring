@@ -5,7 +5,6 @@ import com.example.demo.repos.DatasDBRepository;
 import com.example.demo.repos.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -24,6 +23,9 @@ public class UserService {
     }
     public User get(Long id){
         return userRepository.findById(id).get();
+    }
+    public List<User> getAll(){
+        return userRepository.findAll();
     }
     public void delete(Long id){
         userRepository.deleteById(id);

@@ -1,27 +1,3 @@
-<!--<!DOCTYPE html>-->
-<!--<html>-->
-<!--<head>-->
-<!--    <title>Выбрать дату и параметры</title>-->
-<!--</head>-->
-<!--<body>-->
-<!--<form action="/" method="post" th:action="@{eeer}" th:object="${Datas}">-->
-<!--    <label for="selectedDate">Выберите дату:</label>-->
-<!--    <input type="date" id="selectedDate" name="selectedDate" th:field="*{date}">-->
-
-<!--    <br>-->
-
-<!--    <label for="waterLevel">Уровень воды:</label>-->
-<!--    <input type="checkbox" id="waterLevel" name="waterLevel" th:field="*{waterLevel}" value="true">-->
-
-<!--    <label for="airTemperature">Температура воздуха:</label>-->
-<!--    <input type="checkbox" id="airTemperature" name="airTemperature" th:field="*{airTemperature}" value="true">-->
-
-<!--    <br>-->
-
-<!--    <input type="submit" value="Отправить">-->
-<!--</form>-->
-<!--</body>-->
-<!--</html>-->
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
@@ -33,55 +9,70 @@
         .container {
             margin-top: 50px;
         }
-        #calendar {
-            margin-bottom: 20px;
-            position: absolute;
-            top: 20px;
-            right: 20px;
-        }
         #river-image {
             width: 100%;
-        }
-        #post-code {
-            width: 150px;
         }
     </style>
 </head>
 <body>
 <div class="container">
     <h2>Прогноз уровня воды в реке</h2>
-<!--    <p class="alert alert-danger" th:if="${#fields.hasErrors('Kod')}" th:errors="*{Kod}"></p>-->
-    <form action="/" method="post" th:action="@{eeer}" th:object="${Datas}">
+    <div id="warning" class="alert alert-danger" style="display:none;">
+    </div> <form action="/" method="post" th:action="@{eeer}" th:object="${Datas}">
+    <!--    <p class="alert alert-danger" th:if="${#fields.hasErrors('Kod')}" th:errors="*{Kod}"></p>-->
+    <form id="f" action="/" method="post" th:action="@{eeer}" th:object="${Datas}">
         <label for="selectedDate">Выберите дату:</label>
         <input type="date" id="selectedDate" name="selectedDate" th:field="*{date}">
         <br>
+        <label for="selectedDate">Выберите дату:</label>
+        <input type="date" id="selectedDate1" name="selectedDate1" th:field="*{date1}">
+        <br>
         <label for="waterLevel">Уровень воды:</label>
-        <input type="checkbox" id="waterLevel" name="waterLevel" th:field="*{waterLevel}" value="">
+        <input type="checkbox" id="waterLevel" name="waterLevel" th:field="*{waterLevel}" th:checked="${waterLevel}" value="true">
         <br>
         <label for="airTemperature">Температура воздуха:</label>
-        <input type="checkbox" id="airTemperature" name="airTemperature" th:field="*{airTemperature}" value="">
+        <input type="checkbox" id="airTemperature" name="airTemperature" th:field="*{airTemperature}" th:checked="${airTemperature}" value="true">
         <br>
-        <label for="Kod">Код поста:</label>
-        <input type="text" id="Kod" name="Kod" th:field="*{Kod}">
-        <br>
+
         <label for="pressure">Атмосферное давление:</label>
-        <input type="checkbox" id="pressure" name="pressure" th:field="*{pressure}" value="">
+        <input type="checkbox" id="pressure" name="pressure" th:field="*{pressure}" th:checked="${pressure}" value="true">
         <br>
         <label for="windspeed">Скорость ветра:</label>
-        <input type="checkbox" id="windspeed" name="windspeed" th:field="*{windspeed}" value="">
+        <input type="checkbox" id="windspeed" name="windspeed" th:field="*{windspeed}"  th:checked="${windspeed}" value="true">
         <br>
         <label for="snow">Толщина снежного покрова:</label>
-        <input type="checkbox" id="snow" name="snow" th:field="*{snow}" value="">
+        <input type="checkbox" id="snow" name="snow" th:field="*{snow}" th:checked="${snow}" value="true">
         <br>
         <label for="precipation">Количество осадков:</label>
-        <input type="checkbox" id="precipation" name="precipation" th:field="*{precipation}" value="">
+        <input type="checkbox" id="precipation" name="precipation" th:field="*{precipation}" th:checked="${precipation}" value="true">
         <br>
-        <!--        <div class="form-group">-->
-        <!--            <label for="kod">Выберите код поста:</label> <select th:field="*{list}" class="form-control" id="post-code">-->
-        <!--            <option th:each="el : ${list}" th:value="${el}" th:text="${el}">Пост 1</option> </select>-->
-        <!--        </div>-->
-        <button type="submit" class="btn btn-primary">Предсказать уровень воды</button>
+        <label  for="Kod">Код поста:</label>
+        <input type="text" id="Kod" name="Kod" th:field="*{Kod}">
+        <br>
+        <button  type="submit" onclick="checkinput()" class="btn btn-primary">Предсказать уровень воды</button>
     </form>
+    <button id="gnida" onclick="clearAllFields()" type="clearButton" class="btn btn-danger mt-2">Очистить поле</button>
+    <script>
+        function clearAllFields() {
+            var inputs = document.querySelectorAll('input[type="text"], input[type="password"], input[type="email"], input[type="checkbox"], input[type="date"]');
+            for (var i = 0; i < inputs.length; i++) {
+                if (inputs[i].type === 'checkbox') {
+                    inputs[i].checked = false;
+                } else {
+                    inputs[i].value = '';
+                }
+            }
+        }
+        function checkinput() {
+            var kodInput = document.getElementById("Kod")
+            if (kodInput.value === '') {
+                alert("Поле не должно быть пустым.");
+            } else if (!/^\d+$/.test(kodInput.value)) {
+                alert("Поле должно содержать только цифры.");
+
+            }
+        }
+    </script>
     <div id="river-image">
         <img src="river_image.jpg" alt="Река" id="river">
     </div>

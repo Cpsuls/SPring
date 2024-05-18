@@ -7,8 +7,11 @@
 </head>
 <body>
 <div class="container">
-    <h2>Результат предсказания: <span th:text="${results}"></span></p></h2>
-    <p>Дата: <span th:text="${date}"></span></p>
+    <h2>Результат предсказания:</h2>
+    <ul th:each="res : ${results}">
+        <li th:text="${res}"></li>
+    </ul>
+    <p>Дата: <span th:text="${date1}"></span></p>
     <p>Температура воздуха: <span th:text="${air}"></span></p>
     <p>Уровень воды: <span th:text="${water}"></span></p>
     <p>Атмосферное давление: <span th:text="${pressure}"></span></p>
@@ -16,6 +19,14 @@
     <p>Количество осадков: <span th:text="${precipation}"></span></p>
     <p>Снежный покров: <span th:text="${snow}"></span></p>
     <p>Код поста: <span th:text="${kod}"></span></p>
+    <img id="chart" src="/chart.png" style="display: none;" />
 </div>
+<button id="showChart">Показать график</button>
+<script type="text/javascript">
+    document.getElementById("showChart").addEventListener("click", function() {
+        const chartImage = document.querySelector("img[src='/chart.png']");
+        chartImage.style.display = "block";
+    });
+</script>
 </body>
 </html>
