@@ -46,7 +46,7 @@ public class MeteoDataProcessor {
                 dataList.add(data);
                 }
                 catch (Exception e){
-                    break;
+                    continue;
 
                 }
 

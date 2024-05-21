@@ -2,6 +2,7 @@
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+<!--    <link rel="shortcut icon" href="belaya.jpg" >-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Прогноз уровня воды в реке</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -11,6 +12,29 @@
         }
         #river-image {
             width: 100%;
+        }
+        body {
+            background-image: url('xren.jpg');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+        #eve {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            display: inline-block;
+        }
+
+        #eve button:hover {
+            background-color: #45a049;
         }
     </style>
 </head>
@@ -27,13 +51,12 @@
         <label for="selectedDate">Выберите дату:</label>
         <input type="date" id="selectedDate1" name="selectedDate1" th:field="*{date1}">
         <br>
-        <label for="waterLevel">Уровень воды:</label>
-        <input type="checkbox" id="waterLevel" name="waterLevel" th:field="*{waterLevel}" th:checked="${waterLevel}" value="true">
-        <br>
+<!--        <label for="waterLevel">Уровень воды:</label>-->
+<!--        <input type="checkbox" id="waterLevel" name="waterLevel" th:field="*{waterLevel}" th:checked="${waterLevel}" value="true">-->
+<!--        <br>-->
         <label for="airTemperature">Температура воздуха:</label>
         <input type="checkbox" id="airTemperature" name="airTemperature" th:field="*{airTemperature}" th:checked="${airTemperature}" value="true">
         <br>
-
         <label for="pressure">Атмосферное давление:</label>
         <input type="checkbox" id="pressure" name="pressure" th:field="*{pressure}" th:checked="${pressure}" value="true">
         <br>
@@ -51,8 +74,16 @@
         <br>
         <button  type="submit" onclick="checkinput()" class="btn btn-primary">Предсказать уровень воды</button>
     </form>
-    <button id="gnida" onclick="clearAllFields()" type="clearButton" class="btn btn-danger mt-2">Очистить поле</button>
+    <button id="" onclick="clearAllFields()" type="clearButton" class="btn btn-danger mt-2">Очистить поле</button>
+    <br>
+    <button id="eve" onclick="everything()">Выбрать все</button>
     <script>
+        function everything(){
+            var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            for (var i = 0; i < checkboxes.length; i++) {
+                checkboxes[i].checked = true;
+            }
+        }
         function clearAllFields() {
             var inputs = document.querySelectorAll('input[type="text"], input[type="password"], input[type="email"], input[type="checkbox"], input[type="date"]');
             for (var i = 0; i < inputs.length; i++) {
@@ -64,12 +95,11 @@
             }
         }
         function checkinput() {
-            var kodInput = document.getElementById("Kod")
+            var kodInput = document.getElementById("Kod");
             if (kodInput.value === '') {
                 alert("Поле не должно быть пустым.");
             } else if (!/^\d+$/.test(kodInput.value)) {
                 alert("Поле должно содержать только цифры.");
-
             }
         }
     </script>
@@ -78,4 +108,9 @@
     </div>
 </div>
 </body>
+<footer>
+    <div class="footer-content">
+        <p>Выполнили бонобо</p>
+    </div>
+</footer>
 </html>

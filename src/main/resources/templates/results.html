@@ -3,7 +3,36 @@
 <head>
     <title>Результаты</title>
     <meta charset="UTF-8">
-    <title>Title</title>
+<!--    <link rel="shortcut icon" href="belaya.jpg" >-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .container {
+            margin-top: 50px;
+        }
+        body {
+            background-image: url('xren.jpg');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            display: inline-block;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
 <body>
 <div class="container">
@@ -19,14 +48,20 @@
     <p>Количество осадков: <span th:text="${precipation}"></span></p>
     <p>Снежный покров: <span th:text="${snow}"></span></p>
     <p>Код поста: <span th:text="${kod}"></span></p>
-    <img id="chart" src="/chart.png" style="display: none;" />
+    <button onclick="goBack()">Вернуться назад</button>
 </div>
-<button id="showChart">Показать график</button>
-<script type="text/javascript">
-    document.getElementById("showChart").addEventListener("click", function() {
-        const chartImage = document.querySelector("img[src='/chart.png']");
-        chartImage.style.display = "block";
-    });
+<div style="text-align: center;">
+    <img src="rivers.jpg" alt="Река" style="max-width: 1200px;">
+</div>
+<script>
+    function goBack() {
+        window.history.back();
+    }
 </script>
 </body>
+<footer>
+    <div class="footer-content">
+        <p>Выполнили бонобо</p>
+    </div>
+</footer>
 </html>
