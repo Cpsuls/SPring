@@ -32,9 +32,24 @@
             font-size: 16px;
             display: inline-block;
         }
+        #map {
+            width: 400px;
+            height: 554px;
+            float: right;
+            position: absolute;
+            top: 65px;
+            right: 350px;
+        }
 
         #eve button:hover {
             background-color: #45a049;
+        }
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 10px; /* Отступы */
         }
     </style>
 </head>
@@ -104,7 +119,7 @@
         }
     </script>
     <div id="river-image">
-        <img src="river_image.jpg" alt="Река" id="river">
+        <img src="river_image.jpg" alt="Река" id="map">
     </div>
 </div>
 </body>

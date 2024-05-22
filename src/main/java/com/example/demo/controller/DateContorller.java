@@ -107,6 +107,10 @@ public class DateContorller {
         } catch (Exception e) {
             return "KodError";
         }
+        ArrayList<Integer> lists=datas.getList();
+        if(!lists.contains(kod)){
+            return "KodError";
+        }
         String dates = datas.getDate();
         String dates1 = datas.getDate1();
         LocalDate date = LocalDate.parse(dates);

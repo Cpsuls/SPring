@@ -32,6 +32,14 @@
         button:hover {
             background-color: #45a049;
         }
+        #map {
+            width: 400px;
+            height: 554px;
+            float: right;
+            position: absolute;
+            top: 65px;
+            right: 350px;
+        }
     </style>
 </head>
 <body>
@@ -51,7 +59,7 @@
     <button onclick="goBack()">Вернуться назад</button>
 </div>
 <div style="text-align: center;">
-    <img src="rivers.jpg" alt="Река" style="max-width: 1200px;">
+    <img src="rivers.jpg" alt="Река" id="map">
 </div>
 <script>
     function goBack() {
@@ -59,9 +67,4 @@
     }
 </script>
 </body>
-<footer>
-    <div class="footer-content">
-        <p>Выполнили бонобо</p>
-    </div>
-</footer>
 </html>
